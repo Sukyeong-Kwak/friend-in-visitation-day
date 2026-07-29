@@ -41,7 +41,7 @@ export default function Countdown() {
     const weekAfter = thisMonday + 14 * DAY
     if (eventUTC < nextMonday) text = `이번 주 ${WEEKDAYS[evDow]}`
     else if (eventUTC < weekAfter) text = `다음 주 ${WEEKDAYS[evDow]}`
-    else text = `${month}월 ${day}일`
+    else text = `D-${diff}`
   }
 
   return (

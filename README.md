@@ -1,9 +1,10 @@
-# Vine English 영어 발표회 초대장
+# 청년시선 · 친구초청잔치 초대장
 
-Vine English 학원의 부모님 대상 **영어 발표회 초대장** 웹페이지입니다.
-아이들의 영어 연극 3편(Caillou at Daycare, Peppa Pig – Bubbles, Peppa Pig – Jelly)에
-부모님을 초대하는 내용과, 행사 장소(바인하우스) 지도를 담고 있습니다.
+포도나무교회 청년부 **친구초청잔치** 초대장 웹페이지입니다.
+창작 뮤지컬 「청년시선」(2026) 공연 안내와 뷔페 식사 안내, 오시는 길(포도나무교회)을 담고 있습니다.
 
+- **일시**: 2026년 8월 17일 (월) 저녁 7시 · 뷔페 식사 오후 5시 30분(신청자에 한함)
+- **장소**: 포도나무교회 (경기 용인시 기흥구 신정로 123-1)
 - **스택**: Vite + React + TypeScript
 - **배포**: Vercel
 
@@ -18,20 +19,34 @@ npm run preview  # 빌드 결과 미리보기
 
 ## 내용 수정
 
-행사 정보(날짜·시간·장소)와 연극 목록은 모두 아래 한 파일에서 관리합니다.
+행사 정보(날짜·시간·장소), 당일 순서, 공연 미리보기 문구는 모두 아래 한 파일에서 관리합니다.
 
 ```
 src/data/event.ts
 ```
 
+- `event` : 행사명·일시·장소·인사말
+- `heroFacts` : 첫 화면 요약 칩(날짜 / 공연 / 식사)
+- `schedule` : 당일 순서(뷔페 / 공연)
+- `teasers`, `teaserQuote`, `teaserOutro` : 공연 미리보기 (스포일러 없이 궁금증만)
+
 ## 지도 (API 키 불필요)
 
-- 표시용 지도는 **키가 필요 없는 구글 지도 임베드**입니다.
+- 표시용 지도는 **네이버 장소 지도 임베드**입니다(`m.place.naver.com/place/{id}/location`, 키 불필요).
+  상단 헤더·탭 영역은 CSS(`.map__canvas--naver`)로 잘라내 지도만 보이게 처리했습니다.
+- `.env` 에 `VITE_NAVER_MAP_CLIENT_ID`(네이버 클라우드 Maps 키)를 넣으면
+  임베드 대신 **네이버 Dynamic Map**(직접 그린 마커)으로 자동 전환됩니다.
 - 정확한 위치·길찾기는 앱 연결 버튼으로 처리합니다:
-  - **네이버지도**: 확인된 장소 링크(`naver.me`)로 앱/웹에 정확히 연결
-  - **카카오맵 · 티맵**: 좌표 대신 주소·상호 검색으로 앱 실행(미설치 시 웹/스토어 폴백)
-- 장소를 바꾸려면 `src/data/event.ts` 의 `naverPlaceUrl`, `mapEmbedQuery`,
-  `mapSearchQuery`, `venueAddress` 값만 수정하세요.
+  - **네이버지도 · 카카오맵**: 확인된 장소 단축링크로 앱/웹에 정확히 연결
+  - **티맵**: 좌표 기반 길찾기(미설치 시 스토어 폴백)
+- 장소를 바꾸려면 `src/data/event.ts` 의 `naverPlaceUrl`, `kakaoPlaceUrl`,
+  `naverPlaceId`, `venueCoord`, `venueAddress` 값을 수정하세요.
+  (`naverPlaceId` 는 `naver.me` 단축링크를 열었을 때 주소창의 `/place/{숫자}` 값)
+
+## 공유 이미지(OG)
+
+`public/og-image.png` (1200×630). 카카오톡 공유 시 노출되며,
+`index.html` 의 `og:url`/`og:image` 는 실제 배포 도메인에 맞춰 수정해야 합니다.
 
 ## Vercel 배포
 
@@ -39,4 +54,3 @@ src/data/event.ts
 2. Vercel → New Project → 저장소 선택
 3. Framework Preset: **Vite** (자동 인식), 그대로 Deploy
 4. (선택) Settings → Environment Variables 에 `VITE_NAVER_MAP_CLIENT_ID` 추가
-```

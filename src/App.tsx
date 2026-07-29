@@ -1,7 +1,8 @@
 import { Analytics } from '@vercel/analytics/react'
 import Hero from './components/Hero'
 import EventDetails from './components/EventDetails'
-import PlayList from './components/PlayList'
+import Schedule from './components/Schedule'
+import Program from './components/Program'
 import MapSection from './components/MapSection'
 import Footer from './components/Footer'
 
@@ -12,7 +13,8 @@ export default function App() {
         <main className="card">
           <Hero />
           <EventDetails />
-          <PlayList />
+          <Schedule />
+          <Program />
           <MapSection />
           <Footer />
         </main>

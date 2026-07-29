@@ -1,86 +1,126 @@
-// 발표회 및 장소 정보 — 이 파일만 수정하면 초대장 내용이 바뀝니다.
+// 친구초청잔치 · 뮤지컬 「청년시선」 초대장
+// 행사 정보는 이 파일만 수정하면 전체 페이지에 반영됩니다.
 
-export interface Play {
+export interface Teaser {
   id: string
+  no: string
   title: string
-  titleKo: string
-  summary: string
+  line: string
   color: string
 }
 
+export interface ScheduleItem {
+  id: string
+  time: string
+  title: string
+  desc: string
+  dur?: string
+  badge?: string
+}
+
 export const event = {
-  academy: 'Vine English',
-  showcase: 'Vine Up',
-  title: 'On Stage with Vine English',
-  subtitle: '바인잉글리시 친구들의 첫 영어 성장 발표회',
+  host: '포도나무교회 청년부',
+  eventName: '친구초청잔치',
+  title: '청년시선',
+  eyebrow: '2026 청년부 뮤지컬',
+  tagline: '인생살이 어떤가요?',
   // 인사말
   greeting:
-    '우리 친구들이 평소에 배웠던 애니메이션 명장면들을 대사도 외우고, 몸과 목소리로 표현도 해보면서 무대를 준비했습니다. 즐겁게 읽고 배워온 책과 영어 과학 이야기도 들려드리려고 해요. 오셔서 이 사랑스러운 성장의 모습을 지켜봐 주세요!',
+    '취업, 관계, 통장 잔고… 저마다의 무게를 안고 살아가는 우리의 이야기를 무대에 담았습니다. 웃다가 울다가, 한 청년의 하루를 함께 따라가다 보면 어느새 나의 이야기가 되어 있을 거예요. 공연 전에는 따뜻한 저녁 식사도 준비되어 있으니, 편한 마음으로 오셔서 함께해 주세요.',
   // 날짜/시간
-  date: '2026년 7월 11일 토요일',
-  time: '오전 11시',
-  eventDate: { year: 2026, month: 7, day: 11 },
+  date: '2026년 8월 17일 월요일',
+  dateNote: '대체공휴일',
+  time: '저녁 7시 ~ 8시 30분',
+  eventDate: { year: 2026, month: 8, day: 17 },
   // 장소
-  venueName: '바인하우스',
-  venueAddress: '경기도 용인시 기흥구 신정로 123-1 H동',
-  venueNote: '카페 공간에서 편안하게 관람하실 수 있습니다.',
+  venueName: '포도나무교회',
+  venueHall: '본당',
+  venueAddress: '경기 용인시 기흥구 신정로 123-1',
+  venueNote: '공연은 교회 본당에서 진행됩니다.',
+  // 뷔페 안내
+  mealNotice: '뷔페 식사는 사전 신청하신 분들을 위해 준비됩니다. 초대해 주신 분께 미리 신청해 주세요.',
+  scheduleNote: '본행사는 저녁 8시 30분에 마칠 예정이며, 순서별 시간은 조금 달라질 수 있어요.',
 } as const
 
-// 네이버 지도 장소 링크 (사용자가 확인한 정확한 위치)
-// 모바일에서 누르면 네이버 지도 앱으로, PC에서는 웹으로 정확히 열립니다.
-export const naverPlaceUrl = 'https://naver.me/xAARFN33'
+// 네이버 지도 장소 링크 (모바일=앱, PC=웹으로 정확히 열림)
+export const naverPlaceUrl = 'https://naver.me/FCZ7JYIg'
 
 // 카카오맵 장소 링크 (모바일=앱, PC=웹으로 정확히 열림)
-export const kakaoPlaceUrl = 'https://kko.to/6v9XjiKGWa'
+export const kakaoPlaceUrl = 'https://kko.to/o7V8lenrgR'
 
-// 구글 지도 임베드용 주소 검색어 (상호명 제외 — 지오코딩 정확도 ↑)
-export const mapEmbedQuery = '경기 용인시 기흥구 신정로 123-1'
+// 네이버 장소 ID (naver.me 단축링크가 가리키는 장소) — 지도 임베드에 사용
+export const naverPlaceId = '11852583'
 
-// 카카오맵 · 티맵 앱 검색용 (상호명 포함)
-export const mapSearchQuery = '용인 신정로 바인하우스'
+// 페이지에 표시할 네이버 지도 (API 키 불필요 · 모바일 장소 지도 페이지)
+export const naverEmbedUrl = `https://m.place.naver.com/place/${naverPlaceId}/location`
 
-// 바인하우스 정확한 좌표 (네이버 Dynamic Map 마커용)
-export const venueCoord = { lat: 37.281623227476345, lng: 127.10037517627539 }
+// 포도나무교회 본당 좌표 (네이버 장소 정보 기준 — 지도 마커·티맵 길찾기용)
+export const venueCoord = { lat: 37.2825666, lng: 127.1009749 }
 
-export const plays: Play[] = [
+// 히어로 요약 칩 (날짜 · 공연 · 식사)
+export const heroFacts = [
+  { id: 'date', key: '08.17', sub: '월 · 대체공휴일' },
+  { id: 'show', key: '19:00', sub: '시작 · ~20:30' },
+  { id: 'meal', key: '17:30', sub: '뷔페 · 신청자' },
+]
+
+// 당일 순서
+export const schedule: ScheduleItem[] = [
   {
-    id: 'caillou',
-    title: 'Caillou at Daycare',
-    titleKo: '까이유의 어린이집',
-    summary:
-      '첫 등원날의 까이유. 낯선 곳에서 새 친구와 선생님을 만나 마음을 여는 이야기예요.',
-    color: '#f39aac',
+    id: 'buffet',
+    time: '오후 5:30',
+    title: '뷔페 식사',
+    desc: '본행사 전, 함께 저녁을 나눕니다.',
+    badge: '신청자',
   },
   {
-    id: 'peppa-bubbles',
-    title: 'Peppa Pig — Bubbles',
-    titleKo: '페파 피그 · 비눗방울',
-    summary:
-      '페파가 동생 조지에게 비눗방울 부는 법을 알려주는, 남매의 다정한 하루예요.',
-    color: '#7fc3dd',
+    id: 'praise',
+    time: '저녁 7:00',
+    title: '찬양 · 경배',
+    desc: '다 함께 찬양하며 문을 엽니다.',
+    dur: '약 20분',
   },
   {
-    id: 'peppa-jelly',
-    title: 'Peppa Pig — Jelly',
-    titleKo: '페파 피그 · 젤리',
-    summary:
-      '아빠와 함께 주방에서 젤리를 만들며 벌어지는 페파네 가족의 유쾌한 소동이에요.',
-    color: '#b092dc',
+    id: 'musical',
+    time: '저녁 7:20',
+    title: '뮤지컬 「청년시선」',
+    desc: '청년부가 직접 준비한 창작 뮤지컬.',
+    dur: '약 30분',
   },
   {
-    id: 'bluey',
-    title: 'Bluey — How to Play Octopus',
-    titleKo: '블루이 · 문어 놀이',
-    summary:
-      '블루이와 클로이가 문어가 된 아빠의 보물을 훔치는 “문어 놀이”를 하며 깔깔대는 이야기예요.',
-    color: '#90d1af',
-  },
-  {
-    id: 'daniel',
-    title: 'Daniel Tiger — A Night Out at the Restaurant',
-    titleKo: '대니얼 타이거 · 레스토랑에서의 저녁',
-    summary:
-      '대니얼 타이거 가족이 상상 레스토랑에서 저녁을 먹으며 예절과 즐거움을 배우는 이야기예요.',
-    color: '#ecc85f',
+    id: 'message',
+    time: '저녁 7:50',
+    title: '말씀',
+    desc: '오늘의 이야기를 마음에 담는 시간.',
+    dur: '약 30분',
   },
 ]
+
+// 공연 미리보기 — 내용은 아끼고 궁금증만 남깁니다.
+export const teaserQuote = '인생살이 어떤가요?\n누굴 위해서 무얼 하며 사는지'
+
+export const teasers: Teaser[] = [
+  {
+    id: 'start',
+    no: '01',
+    title: '설레는 첫 출근',
+    line: '드디어 시작된 서울살이. 오늘은 어떤 일이 있을까요?',
+    color: '#7fb7d8',
+  },
+  {
+    id: 'mask',
+    no: '02',
+    title: '웃는 얼굴 뒤에',
+    line: '괜찮은 척, 오늘도 잘 지내는 척. 그 마음, 조금 알 것 같지 않나요?',
+    color: '#c48fd0',
+  },
+  {
+    id: 'light',
+    no: '03',
+    title: '그리고, 한줄기 빛',
+    line: '이야기의 끝은 아직 비밀입니다. 무대에서 직접 만나 주세요.',
+    color: '#e8c877',
+  },
+]
+
+export const teaserOutro = '결말은 8월 17일, 무대에서 공개됩니다.'
