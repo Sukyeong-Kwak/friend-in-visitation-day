@@ -59,7 +59,7 @@ export default function CopyButton({ text, label = '주소 복사' }: Props) {
           </svg>
         )}
       </button>
-      {copied && <span className="copybtn__toast">복사됐어요</span>}
+      {copied && <span className="copybtn__toast">복사됐습니다</span>}
     </span>
   )
 }
