@@ -426,7 +426,7 @@ body {
 .map__canvas {
   display: block;
   width: 100%;
-  height: 250px;
+  height: 100%;
   border: 0;
 }
 
@@ -434,10 +434,6 @@ body {
 .map__canvas--naver {
   height: 452px;
   margin-top: -152px;
-}
-
-.map__frame--full .map__canvas--naver {
-  height: calc(100dvh + 152px);
 }
 
 .map__loading {
@@ -483,6 +479,12 @@ body {
 .map__frame--full .map__canvas {
   height: 100%;
   height: 100dvh;
+}
+
+/* 임베드는 잘라낸 152px 만큼 더 커야 하므로, 위 규칙 뒤에 와야 합니다 */
+.map__frame--full .map__canvas--naver {
+  height: calc(100% + 152px);
+  height: calc(100dvh + 152px);
 }
 
 .map__frame--full .map__expand {

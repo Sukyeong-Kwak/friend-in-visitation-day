@@ -1,6 +1,6 @@
 // 지도 앱 연결 (네이버지도 · 카카오맵 · 티맵)
-// 네이버·카카오: 확인된 장소 링크로 정확히 이동
-// 티맵: 정확한 좌표로 길찾기(route)
+// 네이버: 확인된 장소 링크로 정확히 이동
+// 카카오·티맵: 정확한 좌표로 길찾기(route) — 도착지가 채워진 상태로 열림
 import { naverPlaceUrl, kakaoPlaceUrl, venueCoord, event } from '../data/event'
 
 const goalName = encodeURIComponent(event.venueName)
@@ -37,8 +37,10 @@ export const mapApps: MapApp[] = [
   {
     id: 'kakao',
     label: '카카오맵',
-    kind: 'link',
-    url: kakaoPlaceUrl,
+    kind: 'scheme',
+    // 도착지가 채워진 길찾기 화면으로 바로 진입 (ep=위도,경도)
+    url: `kakaomap://route?ep=${venueCoord.lat},${venueCoord.lng}&by=CAR`,
+    // 앱 미설치·PC: 카카오맵 장소 링크(앱 자동 실행 딥링크)
     fallback: kakaoPlaceUrl,
   },
   {

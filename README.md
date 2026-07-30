@@ -35,8 +35,10 @@ src/data/event.ts
 - `.env` 에 `VITE_NAVER_MAP_CLIENT_ID`(네이버 클라우드 Maps 키)를 넣으면
   임베드 대신 **네이버 Dynamic Map**(직접 그린 마커)으로 자동 전환됩니다.
 - 정확한 위치·길찾기는 앱 연결 버튼으로 처리합니다:
-  - **네이버지도 · 카카오맵**: 확인된 장소 단축링크로 앱/웹에 정확히 연결
-  - **티맵**: 좌표 기반 길찾기(미설치 시 스토어 폴백)
+  - **네이버지도**: 확인된 장소 단축링크로 앱/웹에 정확히 연결
+  - **카카오맵 · 티맵**: 좌표 기반 길찾기(`kakaomap://route`, `tmap://route`)로
+    도착지가 채워진 화면이 바로 열립니다. 앱 미설치 시 카카오맵은 장소 링크,
+    티맵은 스토어로 폴백합니다.
 - 장소를 바꾸려면 `src/data/event.ts` 의 `naverPlaceUrl`, `kakaoPlaceUrl`,
   `naverPlaceId`, `venueCoord`, `venueAddress` 값을 수정하세요.
   (`naverPlaceId` 는 `naver.me` 단축링크를 열었을 때 주소창의 `/place/{숫자}` 값)
@@ -45,6 +47,18 @@ src/data/event.ts
 
 `public/og-image.png` (1200×630). 카카오톡 공유 시 노출되며,
 `index.html` 의 `og:url`/`og:image` 는 실제 배포 도메인에 맞춰 수정해야 합니다.
+
+이미지 원본은 `scripts/og-template.html` 이며, 히어로 디자인과 같은 구성입니다.
+문구를 바꾼 뒤 아래 명령으로 다시 뽑으면 됩니다.
+
+```
+chrome --headless=new --disable-gpu --hide-scrollbars \
+  --window-size=1200,630 --virtual-time-budget=6000 \
+  --screenshot=public/og-image.png scripts/og-template.html
+```
+
+카카오톡은 OG 정보를 캐시하므로, 교체 후 `og:image` 뒤의 `?v=` 숫자를 올리고
+[카카오 캐시 초기화](https://developers.kakao.com/tool/clear/og) 에서 URL을 한 번 긁어 주세요.
 
 ## Vercel 배포
 

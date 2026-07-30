@@ -38,8 +38,8 @@ export const event = {
 // 네이버 지도 장소 링크 (모바일=앱, PC=웹으로 정확히 열림)
 export const naverPlaceUrl = 'https://naver.me/FCZ7JYIg'
 
-// 카카오맵 장소 링크 (모바일=앱, PC=웹으로 정확히 열림)
-export const kakaoPlaceUrl = 'https://kko.to/o7V8lenrgR'
+// 카카오맵 장소 링크 — applink.map.kakao.com 으로 리다이렉트되어 앱이 자동으로 열립니다.
+export const kakaoPlaceUrl = 'https://kko.to/uH34YhE4Z4'
 
 // 네이버 장소 ID (naver.me 단축링크가 가리키는 장소) — 지도 임베드에 사용
 export const naverPlaceId = '11852583'
