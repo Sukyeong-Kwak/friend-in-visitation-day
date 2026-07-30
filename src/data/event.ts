@@ -1,14 +1,6 @@
 // 친구초청잔치 · 뮤지컬 「청년시선」 초대장
 // 행사 정보는 이 파일만 수정하면 전체 페이지에 반영됩니다.
 
-export interface Teaser {
-  id: string
-  no: string
-  title: string
-  line: string
-  color: string
-}
-
 export interface ScheduleItem {
   id: string
   time: string
@@ -23,15 +15,16 @@ export const event = {
   eventName: '친구초청잔치',
   title: '청년시선',
   eyebrow: '2026 청년부 뮤지컬',
-  tagline: '인생살이 어떤가요?',
+  // 히어로 문구 — 1행은 인용, 마지막 행은 강조
+  taglineQuote: '“수고하고 무거운 짐 진 자들아, 다 내게로 오라.”',
+  taglineLead: '모든 것이 어두워진 순간,',
+  taglineAsk: '당신의 시선은 어디로 향하나요?',
+  // 히어로 날짜 블록
+  heroDate: '2026.8.17',
+  heroTime: 'MON 7PM',
   // 인사말
   greeting:
     '취업, 관계, 통장 잔고… 저마다의 무게를 안고 살아가는 우리의 이야기를 무대에 담았습니다. 웃다가 울다가, 한 청년의 하루를 함께 따라가다 보면 어느새 나의 이야기가 되어 있을 거예요. 공연 전에는 따뜻한 저녁 식사도 준비되어 있으니, 편한 마음으로 오셔서 함께해 주세요.',
-  // 날짜/시간
-  date: '2026년 8월 17일 월요일',
-  dateNote: '대체공휴일',
-  time: '저녁 7시 ~ 8시 30분',
-  eventDate: { year: 2026, month: 8, day: 17 },
   // 장소
   venueName: '포도나무교회',
   venueHall: '본당',
@@ -56,13 +49,6 @@ export const naverEmbedUrl = `https://m.place.naver.com/place/${naverPlaceId}/lo
 
 // 포도나무교회 본당 좌표 (네이버 장소 정보 기준 — 지도 마커·티맵 길찾기용)
 export const venueCoord = { lat: 37.2825666, lng: 127.1009749 }
-
-// 히어로 요약 칩 (날짜 · 공연 · 식사)
-export const heroFacts = [
-  { id: 'date', key: '08.17', sub: '월 · 대체공휴일' },
-  { id: 'show', key: '19:00', sub: '시작 · ~20:30' },
-  { id: 'meal', key: '17:30', sub: '뷔페 · 신청자' },
-]
 
 // 당일 순서
 export const schedule: ScheduleItem[] = [
@@ -95,32 +81,3 @@ export const schedule: ScheduleItem[] = [
     dur: '약 30분',
   },
 ]
-
-// 공연 미리보기 — 내용은 아끼고 궁금증만 남깁니다.
-export const teaserQuote = '인생살이 어떤가요?\n누굴 위해서 무얼 하며 사는지'
-
-export const teasers: Teaser[] = [
-  {
-    id: 'start',
-    no: '01',
-    title: '설레는 첫 출근',
-    line: '드디어 시작된 서울살이. 오늘은 어떤 일이 있을까요?',
-    color: '#7fb7d8',
-  },
-  {
-    id: 'mask',
-    no: '02',
-    title: '웃는 얼굴 뒤에',
-    line: '괜찮은 척, 오늘도 잘 지내는 척. 그 마음, 조금 알 것 같지 않나요?',
-    color: '#c48fd0',
-  },
-  {
-    id: 'light',
-    no: '03',
-    title: '그리고, 한줄기 빛',
-    line: '이야기의 끝은 아직 비밀입니다. 무대에서 직접 만나 주세요.',
-    color: '#e8c877',
-  },
-]
-
-export const teaserOutro = '결말은 8월 17일, 무대에서 공개됩니다.'

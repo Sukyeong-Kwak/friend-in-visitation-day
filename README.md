@@ -25,10 +25,8 @@ npm run preview  # 빌드 결과 미리보기
 src/data/event.ts
 ```
 
-- `event` : 행사명·일시·장소·인사말
-- `heroFacts` : 첫 화면 요약 칩(날짜 / 공연 / 식사)
+- `event` : 행사명·히어로 문구(`tagline*`)·히어로 날짜(`heroDate`/`heroTime`)·장소·인사말
 - `schedule` : 당일 순서(뷔페 / 공연)
-- `teasers`, `teaserQuote`, `teaserOutro` : 공연 미리보기 (스포일러 없이 궁금증만)
 
 ## 지도 (API 키 불필요)
 
