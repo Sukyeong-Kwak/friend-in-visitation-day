@@ -6,7 +6,7 @@
 - **일시**: 2026년 8월 17일 (월) 저녁 7시 · 뷔페 식사 오후 5시 30분(신청자에 한함)
 - **장소**: 포도나무교회 (경기 용인시 기흥구 신정로 123-1)
 - **스택**: Vite + React + TypeScript
-- **배포**: Vercel
+- **배포**: Vercel (Vercel Analytics 적용)
 
 ## 개발
 
@@ -17,16 +17,55 @@ npm run build    # 타입체크 + 프로덕션 빌드 (dist/)
 npm run preview  # 빌드 결과 미리보기
 ```
 
+환경 변수는 기본적으로 필요 없습니다. 선택 항목은 `.env.example` 을 참고하세요.
+
+## 페이지 구성
+
+한 장짜리 초대장이며, 위에서부터 아래 순서로 이어집니다.
+
+| 섹션 | 컴포넌트 | 내용 |
+| --- | --- | --- |
+| 히어로 | `src/components/Hero.tsx` | 인용 문구 · 공연명 · 날짜/장소 · 섹션 바로가기 버튼 |
+| 인사말 | `src/components/EventDetails.tsx` | 초대 인사말(`greeting`) |
+| 당일 순서 | `src/components/Schedule.tsx` | 뷔페 / 찬양 / 뮤지컬 / 말씀 + 종료 시각·뷔페 안내 |
+| 오시는 길 | `src/components/MapSection.tsx` | 지도 · 주소 복사 · 지도 앱 연결 |
+| 푸터 | `src/components/Footer.tsx` | 마무리 문구(컴포넌트에 직접 작성) |
+
+```
+src/
+├─ App.tsx              # 섹션 조립
+├─ components/          # 위 표의 섹션들 + CopyButton
+├─ data/event.ts        # 모든 행사 정보 (여기만 고치면 됨)
+├─ lib/mapLinks.ts      # 지도 앱 연결 로직
+└─ index.css            # 전체 스타일
+public/                 # favicon · og-image.png
+scripts/og-template.html # OG 이미지 원본
+```
+
 ## 내용 수정
 
-행사 정보(날짜·시간·장소), 당일 순서, 공연 미리보기 문구는 모두 아래 한 파일에서 관리합니다.
+행사 정보(날짜·시간·장소)와 당일 순서는 아래 한 파일에서 관리합니다.
 
 ```
 src/data/event.ts
 ```
 
-- `event` : 행사명·히어로 문구(`tagline*`)·히어로 날짜(`heroDate`/`heroTime`)·장소·인사말
-- `schedule` : 당일 순서(뷔페 / 공연)
+- `event`
+  - 주최·공연명: `host`, `eventName`, `title`, `eyebrow`
+  - 히어로 문구: `taglineQuote`(인용) / `taglineLead` / `taglineAsk`(강조)
+  - 히어로 날짜: `heroDate`, `heroTime`
+  - 인사말: `greeting`
+  - 장소: `venueName`, `venueHall`, `venueAddress`, `venueNote` (히어로·오시는 길에서 함께 사용)
+  - 안내 문구: `scheduleNote`(종료 시각), `mealNotice`(뷔페 사전 신청)
+- `schedule` : 당일 순서 배열 (뷔페 / 찬양 / 뮤지컬 / 말씀)
+- 지도 관련 값: `naverPlaceUrl`, `kakaoPlaceUrl`, `naverPlaceId`, `venueCoord`
+
+푸터 마무리 문구만 `src/components/Footer.tsx` 안에 직접 들어 있습니다.
+
+### 문구 어투
+
+- **안내문은 합니다체** — 사실 전달, 순서 설명 (예: "공연은 교회 본당에서 진행됩니다.")
+- **요청·감성 문구는 해요체** — 부탁, 초대하는 말 (예: "미리 신청해 주세요.")
 
 ## 지도 (API 키 불필요)
 
@@ -45,8 +84,10 @@ src/data/event.ts
 
 ## 공유 이미지(OG)
 
-`public/og-image.png` (1200×630). 카카오톡 공유 시 노출되며,
-`index.html` 의 `og:url`/`og:image` 는 실제 배포 도메인에 맞춰 수정해야 합니다.
+`public/og-image.png` (1200×630). 카카오톡 공유 시 노출됩니다.
+`index.html` 의 `og:url`/`og:image` 는 현재 배포 도메인
+(`https://friend-in-visitation-day.vercel.app/`)을 가리키고 있으며,
+도메인이 바뀌면 함께 수정해야 합니다.
 
 이미지 원본은 `scripts/og-template.html` 이며, 히어로 디자인과 같은 구성입니다.
 문구를 바꾼 뒤 아래 명령으로 다시 뽑으면 됩니다.
