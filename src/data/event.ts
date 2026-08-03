@@ -5,9 +5,11 @@ export interface ScheduleItem {
   id: string
   time: string
   title: string
-  desc: string
+  desc?: string
   dur?: string
   badge?: string
+  // 타임테이블 마지막 마침 표시 (본문 순서와 다르게 옅게 표시)
+  end?: boolean
 }
 
 export const event = {
@@ -31,10 +33,10 @@ export const event = {
   // 뷔페 안내
   mealNotice: '뷔페 식사는 사전 신청하신 분들을 위해 준비됩니다. 초대해 주신 분께 미리 신청해 주세요.',
   // 식사비 안내 (청년 무료 · 장년 유료, 비용은 초대하는 분 부담)
-  // TODO: 장년 식사비 금액 확정되면 아래 문구에 반영
   mealCostNotice:
-    '청년은 식사비 없이 함께하실 수 있고, 장년분들은 식사비가 있습니다(금액은 확정되는 대로 안내드립니다). 정성껏 차린 뷔페라 오시면 든든하게 드실 수 있어요. 비용은 초대해 주신 분께서 함께 준비해 주시면 감사하겠습니다.',
-  scheduleNote: '본행사는 저녁 8시 30분에 마칠 예정이며, 순서별 시간은 조금 달라질 수 있습니다.',
+    '청년은 식사비 없이 함께하실 수 있고, 장년분들은 식사비가 있습니다. 정성껏 차린 뷔페라 오시면 든든하게 드실 수 있어요. 비용은 초대해 주신 분께서 함께 준비해 주시면 감사하겠습니다.',
+  // 타임테이블 아래 작은 안내 (마침 시각은 순서 목록에 함께 표시됩니다)
+  scheduleNote: '순서별 시간은 조금 달라질 수 있습니다.',
 } as const
 
 // 네이버 지도 장소 링크 (모바일=앱, PC=웹으로 정확히 열림)
@@ -81,5 +83,11 @@ export const schedule: ScheduleItem[] = [
     title: '말씀',
     desc: '오늘의 이야기를 마음에 담는 시간입니다.',
     dur: '약 30분',
+  },
+  {
+    id: 'end',
+    time: '저녁 8:30',
+    title: '본행사 마침',
+    end: true,
   },
 ]

@@ -10,7 +10,7 @@ export default function Schedule() {
 
       <ol className="schedule__list">
         {schedule.map((item) => (
-          <li className="sch" key={item.id}>
+          <li className={`sch${item.end ? ' sch--end' : ''}`} key={item.id}>
             <span className="sch__time">{item.time}</span>
             <span className="sch__line" aria-hidden="true" />
             <div className="sch__body">
@@ -19,13 +19,13 @@ export default function Schedule() {
                 {item.badge && <span className="sch__badge">{item.badge}</span>}
                 {item.dur && <span className="sch__dur">{item.dur}</span>}
               </h3>
-              <p className="sch__desc">{item.desc}</p>
+              {item.desc && <p className="sch__desc">{item.desc}</p>}
             </div>
           </li>
         ))}
       </ol>
 
-      <p className="schedule__note">{event.scheduleNote}</p>
+      <p className="schedule__caption">{event.scheduleNote}</p>
       <div className="schedule__note schedule__note--meal">
         <p className="schedule__note-line">{event.mealNotice}</p>
         <p className="schedule__note-line">{event.mealCostNotice}</p>

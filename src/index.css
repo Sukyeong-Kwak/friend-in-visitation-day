@@ -213,29 +213,43 @@ body {
   color: var(--ink-soft);
 }
 
-/* 섹션 바로가기 — 정보란에 이어 붙는 두 칸 */
+/* 섹션 바로가기 — 눌러서 이동하는 두 개의 버튼 */
 .hero__links {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid var(--rule);
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .hero__link {
-  padding: 15px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 6px;
+  border: 1px solid rgba(169, 64, 84, 0.28);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: 0 2px 6px rgba(120, 92, 70, 0.09);
   text-align: center;
   font-size: 14.5px;
   font-weight: 700;
   letter-spacing: -0.02em;
   text-decoration: none;
-  color: var(--ink);
+  color: var(--rose-deep);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.hero__link + .hero__link {
-  border-left: 1px solid var(--rule);
+.hero__link-arrow {
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.75;
 }
 
 .hero__link:active {
-  color: var(--rose-deep);
+  transform: translateY(1px);
+  background: var(--rose-tint);
+  box-shadow: 0 1px 3px rgba(120, 92, 70, 0.12);
 }
 
 /* ---------- 포스터 크게 보기 ---------- */
@@ -433,6 +447,45 @@ body {
   font-size: 13.4px;
   line-height: 1.72;
   color: var(--ink-soft);
+  word-break: keep-all;
+}
+
+/* 마침 시각 — 순서가 아니라 끝나는 시점이라 옅게 표시 */
+.sch--end .sch__line {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 143, 160, 0.45) 0 9px,
+    transparent 9px
+  );
+}
+
+.sch--end .sch__line::before {
+  background: var(--ivory);
+  border: 2px solid rgba(255, 143, 160, 0.75);
+  box-shadow: none;
+}
+
+.sch--end .sch__time,
+.sch--end .sch__title {
+  color: var(--ink-soft);
+}
+
+.sch--end .sch__title {
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.sch--end .sch__body {
+  padding-bottom: 6px;
+}
+
+/* 타임테이블 아래 작은 안내 */
+.schedule__caption {
+  margin: 2px 0 16px;
+  padding-left: 92px;
+  font-size: 12.2px;
+  line-height: 1.6;
+  color: var(--ink-dim);
   word-break: keep-all;
 }
 
@@ -773,6 +826,9 @@ body {
   }
   .sch {
     grid-template-columns: 58px 24px 1fr;
+  }
+  .schedule__caption {
+    padding-left: 82px;
   }
 }
 

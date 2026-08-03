@@ -33,9 +33,15 @@ export default function Hero() {
         <nav className="hero__links">
           <a className="hero__link" href="#schedule">
             당일 순서
+            <span className="hero__link-arrow" aria-hidden="true">
+              ▾
+            </span>
           </a>
           <a className="hero__link" href="#map">
             오시는 길
+            <span className="hero__link-arrow" aria-hidden="true">
+              ▾
+            </span>
           </a>
         </nav>
       </div>
