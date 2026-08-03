@@ -4,7 +4,6 @@ export default function Schedule() {
   return (
     <section className="schedule" id="schedule">
       <div className="section-head">
-        <span className="section-head__kicker">TIMETABLE</span>
         <h2 className="section-head__title">당일 순서</h2>
         <p className="section-head__sub">식사부터 공연까지, 함께해 주세요</p>
       </div>

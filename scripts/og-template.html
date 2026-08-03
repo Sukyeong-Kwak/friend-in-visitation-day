@@ -14,20 +14,38 @@
       body {
         font-family: 'Pretendard Variable', 'Pretendard', system-ui, sans-serif;
         letter-spacing: -0.01em;
-        background: #faf7f3;
+        background: #fdf7ef;
       }
 
       .og {
         position: relative;
+        display: flex;
         width: 1200px;
         height: 630px;
+        overflow: hidden;
+        isolation: isolate;
+        background: linear-gradient(150deg, #fffaf2 0%, #fdf1e5 45%, #f7e3d3 100%);
+      }
+
+      /* 왼쪽: 포스터 원본 (풀블리드) */
+      .og__poster {
+        flex: none;
+        width: 445px;
+        height: 630px;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      /* 오른쪽: 행사 정보 */
+      .og__info {
+        position: relative;
+        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
-        isolation: isolate;
-        background: linear-gradient(160deg, #ece6f6 0%, #f3ebf3 38%, #fbeee9 72%, #fdf4ee 100%);
+        text-align: center;
+        padding: 0 56px;
       }
 
       .bloom {
@@ -37,74 +55,78 @@
         filter: blur(90px);
       }
       .bloom--1 {
-        top: -180px; left: 40px;
-        width: 460px; height: 460px;
-        background: rgba(169, 155, 216, 0.42);
+        top: -170px; left: -60px;
+        width: 440px; height: 440px;
+        background: rgba(255, 165, 133, 0.4);
       }
       .bloom--2 {
-        bottom: -200px; right: 20px;
-        width: 480px; height: 480px;
-        background: rgba(240, 177, 156, 0.4);
+        bottom: -190px; right: -40px;
+        width: 460px; height: 460px;
+        background: rgba(255, 143, 160, 0.34);
       }
 
       .host {
-        font-size: 30px;
+        font-size: 29px;
         font-weight: 800;
         letter-spacing: -0.02em;
-        color: #a09a92;
+        color: #756b61;
       }
-      .host b { font-weight: 800; color: #8272bd; }
+      .host b { font-weight: 800; color: #a94054; }
 
-      .chip {
-        margin-top: 26px;
-        padding: 11px 30px;
-        border-radius: 999px;
-        font-size: 27px;
-        font-weight: 700;
-        color: #8272bd;
-        background: #fff;
-        box-shadow: 0 6px 18px rgba(140, 120, 190, 0.13);
+      .kicker {
+        margin-top: 30px;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0.28em;
+        color: #a94054;
       }
 
       .title {
-        margin-top: 16px;
-        font-size: 132px;
+        margin-top: 10px;
+        font-size: 122px;
         font-weight: 900;
         line-height: 1.1;
         letter-spacing: -0.035em;
-        color: #17161a;
+        color: #2a231e;
       }
 
-      .when {
-        margin-top: 26px;
-        text-align: center;
+      .rule {
+        width: 64px;
+        height: 4px;
+        margin: 30px 0 28px;
+        border-radius: 999px;
+        background: linear-gradient(120deg, #ffc39b 0%, #ff8fa0 55%, #e79bc4 100%);
       }
+
       .when-line {
-        font-size: 50px;
+        font-size: 47px;
         font-weight: 900;
         letter-spacing: -0.03em;
-        color: #35312c;
+        color: #3a322c;
         font-variant-numeric: tabular-nums;
       }
       .when-place {
         margin-top: 8px;
-        font-size: 32px;
+        font-size: 31px;
         font-weight: 800;
         letter-spacing: -0.03em;
-        color: #6f6a63;
+        color: #756b61;
       }
     </style>
   </head>
   <body>
     <div class="og">
-      <span class="bloom bloom--1"></span>
-      <span class="bloom bloom--2"></span>
+      <img class="og__poster" src="../public/poster.jpg" alt="" />
 
-      <p class="host">포도나무교회 청년부 <b>친구초청잔치</b></p>
-      <span class="chip">2026 청년부 뮤지컬</span>
-      <h1 class="title">청년시선</h1>
+      <div class="og__info">
+        <span class="bloom bloom--1"></span>
+        <span class="bloom bloom--2"></span>
 
-      <div class="when">
+        <p class="host">포도나무교회 청년부 <b>친구초청잔치</b></p>
+        <p class="kicker">2026 청년부 뮤지컬</p>
+        <h1 class="title">청년시선</h1>
+        <span class="rule"></span>
+
         <div class="when-line">2026.8.17 MON 7PM</div>
         <div class="when-place">포도나무교회 본당</div>
       </div>

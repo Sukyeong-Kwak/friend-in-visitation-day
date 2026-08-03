@@ -41,10 +41,10 @@ export default function MapSection() {
         map,
         center,
         radius: 32,
-        strokeColor: '#c2903f',
+        strokeColor: '#e07b8e',
         strokeOpacity: 0.9,
         strokeWeight: 2,
-        fillColor: '#c2903f',
+        fillColor: '#e07b8e',
         fillOpacity: 0.14,
       })
 
@@ -111,7 +111,6 @@ export default function MapSection() {
   return (
     <section className="map" id="map">
       <div className="section-head">
-        <span className="section-head__kicker">LOCATION</span>
         <h2 className="section-head__title">오시는 길</h2>
         <p className="section-head__sub">
           {event.venueName} {event.venueHall}

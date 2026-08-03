@@ -25,7 +25,8 @@ npm run preview  # 빌드 결과 미리보기
 
 | 섹션 | 컴포넌트 | 내용 |
 | --- | --- | --- |
-| 히어로 | `src/components/Hero.tsx` | 인용 문구 · 공연명 · 날짜/장소 · 섹션 바로가기 버튼 |
+| 히어로 | `src/components/Hero.tsx` | 주최 머리글 · 공연 포스터 · 일시/장소 정보란 · 섹션 바로가기 |
+| 포스터 | `src/components/Poster.tsx` | 포스터 이미지 + 눌러서 크게 보기(전체화면) |
 | 인사말 | `src/components/EventDetails.tsx` | 초대 인사말(`greeting`) |
 | 당일 순서 | `src/components/Schedule.tsx` | 뷔페 / 찬양 / 뮤지컬 / 말씀 + 종료 시각·뷔페 안내 |
 | 오시는 길 | `src/components/MapSection.tsx` | 지도 · 주소 복사 · 지도 앱 연결 |
@@ -38,8 +39,28 @@ src/
 ├─ data/event.ts        # 모든 행사 정보 (여기만 고치면 됨)
 ├─ lib/mapLinks.ts      # 지도 앱 연결 로직
 └─ index.css            # 전체 스타일
-public/                 # favicon · og-image.png
+public/                 # favicon · poster.webp · poster.jpg · og-image.png
 scripts/og-template.html # OG 이미지 원본
+```
+
+## 공연 포스터
+
+포스터가 페이지의 중심입니다. 히어로에서 화면 폭을 꽉 채워 보여 주고,
+누르면 전체화면으로 크게 볼 수 있습니다.
+
+- 파일: `public/poster.webp` (주) · `public/poster.jpg` (폴백) — 두 파일 모두 같은 이미지입니다.
+- 포스터를 바꾸면 아래 두 가지를 함께 맞춰 주세요.
+  - `event.posterAlt` : 화면 낭독기·이미지 로딩 실패 시 읽히는 설명
+  - `index.css` 의 `--poster-edge` : **포스터 맨 아랫줄의 평균 색**.
+    이 색에서 시작하는 그러데이션으로 포스터가 아래 정보란에 이어지므로,
+    값이 어긋나면 경계선이 보입니다.
+
+원본 이미지에서 두 파일을 다시 만들 때:
+
+```bash
+python -c "from PIL import Image; im=Image.open('원본.jpg').convert('RGB'); \
+im.save('public/poster.jpg', quality=84, optimize=True, progressive=True); \
+im.save('public/poster.webp', quality=82, method=6)"
 ```
 
 ## 내용 수정
@@ -51,9 +72,9 @@ src/data/event.ts
 ```
 
 - `event`
-  - 주최·공연명: `host`, `eventName`, `title`, `eyebrow`
-  - 히어로 문구: `taglineQuote`(인용) / `taglineLead` / `taglineAsk`(강조)
-  - 히어로 날짜: `heroDate`, `heroTime`
+  - 주최·공연명: `host`, `eventName`, `title`
+  - 포스터 설명: `posterAlt`
+  - 히어로 정보란: `dateLong`(2026년 8월 17일 (월)), `timeLong`(저녁 7시)
   - 인사말: `greeting`
   - 장소: `venueName`, `venueHall`, `venueAddress`, `venueNote` (히어로·오시는 길에서 함께 사용)
   - 안내 문구: `scheduleNote`(종료 시각), `mealNotice`(뷔페 사전 신청)
@@ -89,13 +110,14 @@ src/data/event.ts
 (`https://friend-in-visitation-day.vercel.app/`)을 가리키고 있으며,
 도메인이 바뀌면 함께 수정해야 합니다.
 
-이미지 원본은 `scripts/og-template.html` 이며, 히어로 디자인과 같은 구성입니다.
-문구를 바꾼 뒤 아래 명령으로 다시 뽑으면 됩니다.
+이미지 원본은 `scripts/og-template.html` 이며, 왼쪽에 포스터·오른쪽에 행사 정보를 둔 구성입니다.
+포스터나 문구를 바꾼 뒤 아래 명령으로 다시 뽑으면 됩니다.
+(윈도우 크롬은 상대경로 저장이 실패하므로 **절대경로**로 넘겨야 합니다.)
 
 ```
 chrome --headless=new --disable-gpu --hide-scrollbars \
   --window-size=1200,630 --virtual-time-budget=6000 \
-  --screenshot=public/og-image.png scripts/og-template.html
+  --screenshot=C:\...\public\og-image.png C:\...\scripts\og-template.html
 ```
 
 카카오톡은 OG 정보를 캐시하므로, 교체 후 `og:image` 뒤의 `?v=` 숫자를 올리고

@@ -1,40 +1,43 @@
 import { event } from '../data/event'
+import Poster from './Poster'
 
 export default function Hero() {
   return (
     <header className="hero">
-      <span className="hero__curve" aria-hidden="true" />
-      <span className="hero__bloom hero__bloom--1" aria-hidden="true" />
-      <span className="hero__bloom hero__bloom--2" aria-hidden="true" />
-
       <p className="hero__host">
         {event.host} <b className="hero__host-em">{event.eventName}</b>
       </p>
 
-      <span className="hero__chip">{event.eyebrow}</span>
-      <h1 className="hero__title">{event.title}</h1>
+      <Poster />
 
-      <p className="hero__tagline">
-        <span className="hero__tagline-quote">{event.taglineQuote}</span>
-        <span className="hero__tagline-lead">{event.taglineLead}</span>
-        <b className="hero__tagline-ask">{event.taglineAsk}</b>
-      </p>
+      <div className="hero__info">
+        <p className="hero__caption">포스터를 누르면 크게 볼 수 있어요</p>
 
-      <div className="hero__when">
-        <span className="hero__when-date">{event.heroDate}</span>
-        <span className="hero__when-time">{event.heroTime}</span>
-        <span className="hero__when-place">
-          {event.venueName} {event.venueHall}
-        </span>
-      </div>
+        <dl className="facts">
+          <div className="facts__row">
+            <dt className="facts__label">일시</dt>
+            <dd className="facts__value">
+              {event.dateLong}
+              <span className="facts__sub">{event.timeLong}</span>
+            </dd>
+          </div>
+          <div className="facts__row">
+            <dt className="facts__label">장소</dt>
+            <dd className="facts__value">
+              {event.venueName} {event.venueHall}
+              <span className="facts__sub">{event.venueAddress}</span>
+            </dd>
+          </div>
+        </dl>
 
-      <div className="hero__cta">
-        <a className="hero__btn" href="#map">
-          오시는 길
-        </a>
-        <a className="hero__btn hero__btn--fill" href="#schedule">
-          타임 테이블
-        </a>
+        <nav className="hero__links">
+          <a className="hero__link" href="#schedule">
+            당일 순서
+          </a>
+          <a className="hero__link" href="#map">
+            오시는 길
+          </a>
+        </nav>
       </div>
     </header>
   )
