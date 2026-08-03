@@ -26,7 +26,10 @@ export default function Schedule() {
       </ol>
 
       <p className="schedule__note">{event.scheduleNote}</p>
-      <p className="schedule__note schedule__note--meal">{event.mealNotice}</p>
+      <div className="schedule__note schedule__note--meal">
+        <p className="schedule__note-line">{event.mealNotice}</p>
+        <p className="schedule__note-line">{event.mealCostNotice}</p>
+      </div>
     </section>
   )
 }

@@ -77,7 +77,7 @@ src/data/event.ts
   - 히어로 정보란: `dateLong`(2026년 8월 17일 (월)), `timeLong`(저녁 7시)
   - 인사말: `greeting`
   - 장소: `venueName`, `venueHall`, `venueAddress`, `venueNote` (히어로·오시는 길에서 함께 사용)
-  - 안내 문구: `scheduleNote`(종료 시각), `mealNotice`(뷔페 사전 신청)
+  - 안내 문구: `scheduleNote`(종료 시각), `mealNotice`(뷔페 사전 신청), `mealCostNotice`(식사비 — 청년 무료 / 장년 유료, 초대하는 분 부담. **금액 미정, 확정되면 문구 수정 필요**)
 - `schedule` : 당일 순서 배열 (뷔페 / 찬양 / 뮤지컬 / 말씀)
 - 지도 관련 값: `naverPlaceUrl`, `kakaoPlaceUrl`, `naverPlaceId`, `venueCoord`
 

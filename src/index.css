@@ -452,6 +452,14 @@ body {
   background: var(--rose-tint);
 }
 
+.schedule__note-line {
+  margin: 0;
+}
+
+.schedule__note-line + .schedule__note-line {
+  margin-top: 7px;
+}
+
 /* ---------- Map ---------- */
 .map {
   padding: 0 22px;
