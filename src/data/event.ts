@@ -1,5 +1,11 @@
-// 친구초청잔치 · 뮤지컬 「청년시선」 초대장
+// FRAN's DAY · 뮤지컬 「청년시선」 초대장
 // 행사 정보는 이 파일만 수정하면 전체 페이지에 반영됩니다.
+
+export interface FranItem {
+  letter: string
+  en: string
+  ko: string
+}
 
 export interface ScheduleItem {
   id: string
@@ -14,7 +20,10 @@ export interface ScheduleItem {
 
 export const event = {
   host: '포도나무교회 청년부',
-  eventName: '친구초청잔치',
+  eventName: "FRAN's DAY",
+  eventNameKo: '프렌즈 데이',
+  // 행사 이름 풀이 (F·R·A·N)
+  franNote: '평소 교회에 함께 오고 싶었던 지인들을 초대하는 날입니다.',
   title: '청년시선',
   // 포스터 대체 텍스트 (이미지가 안 보이거나 화면 낭독기를 쓸 때 읽히는 문구)
   posterAlt:
@@ -38,6 +47,14 @@ export const event = {
   // 타임테이블 아래 작은 안내 (마침 시각은 순서 목록에 함께 표시됩니다)
   scheduleNote: '순서별 시간은 조금 달라질 수 있습니다.',
 } as const
+
+// 행사 이름 FRAN 풀이 — 인사말 위 카드에 표시됩니다.
+export const fran: FranItem[] = [
+  { letter: 'F', en: 'Friend', ko: '친구' },
+  { letter: 'R', en: 'Relative', ko: '친척' },
+  { letter: 'A', en: 'Associate', ko: '동료' },
+  { letter: 'N', en: 'Neighbor', ko: '이웃' },
+]
 
 // 네이버 지도 장소 링크 (모바일=앱, PC=웹으로 정확히 열림)
 export const naverPlaceUrl = 'https://naver.me/FCZ7JYIg'

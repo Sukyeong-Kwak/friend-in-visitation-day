@@ -5,7 +5,8 @@ export default function Hero() {
   return (
     <header className="hero">
       <p className="hero__host">
-        {event.host} <b className="hero__host-em">{event.eventName}</b>
+        {event.host} <b className="hero__host-em">{event.eventName}</b>{' '}
+        <span className="hero__host-ko">{event.eventNameKo}</span>
       </p>
 
       <Poster />

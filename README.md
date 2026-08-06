@@ -1,6 +1,8 @@
-# 청년시선 · 친구초청잔치 초대장
+# 청년시선 · FRAN's DAY 초대장
 
-포도나무교회 청년부 **친구초청잔치** 초대장 웹페이지입니다.
+포도나무교회 청년부 **FRAN's DAY(프렌즈 데이)** 초대장 웹페이지입니다.
+행사 이름은 Friend(친구) · Relative(친척) · Associate(동료) · Neighbor(이웃)의 약자로,
+평소 교회에 함께 오고 싶었던 지인들을 초대하는 날입니다.
 창작 뮤지컬 「청년시선」(2026) 공연 안내와 뷔페 식사 안내, 오시는 길(포도나무교회)을 담고 있습니다.
 
 - **일시**: 2026년 8월 17일 (월) 저녁 7시 · 뷔페 식사 오후 5시 30분(신청자에 한함)
@@ -27,7 +29,7 @@ npm run preview  # 빌드 결과 미리보기
 | --- | --- | --- |
 | 히어로 | `src/components/Hero.tsx` | 주최 머리글 · 공연 포스터 · 일시/장소 정보란 · 섹션 바로가기 |
 | 포스터 | `src/components/Poster.tsx` | 포스터 이미지 + 눌러서 크게 보기(전체화면) |
-| 인사말 | `src/components/EventDetails.tsx` | 초대 인사말(`greeting`) |
+| 이름 풀이 · 인사말 | `src/components/EventDetails.tsx` | FRAN 약자 카드(`fran`, `franNote`) + 초대 인사말(`greeting`) |
 | 당일 순서 | `src/components/Schedule.tsx` | 뷔페 / 찬양 / 뮤지컬 / 말씀 + 종료 시각·뷔페 안내 |
 | 오시는 길 | `src/components/MapSection.tsx` | 지도 · 주소 복사 · 지도 앱 연결 |
 | 푸터 | `src/components/Footer.tsx` | 마무리 문구(컴포넌트에 직접 작성) |
@@ -72,12 +74,14 @@ src/data/event.ts
 ```
 
 - `event`
-  - 주최·공연명: `host`, `eventName`, `title`
+  - 주최·공연명: `host`, `eventName`(FRAN's DAY), `eventNameKo`(프렌즈 데이), `title`
+  - 이름 풀이: `franNote` (약자 목록은 같은 파일의 `fran` 배열)
   - 포스터 설명: `posterAlt`
   - 히어로 정보란: `dateLong`(2026년 8월 17일 (월)), `timeLong`(저녁 7시)
   - 인사말: `greeting`
   - 장소: `venueName`, `venueHall`, `venueAddress`, `venueNote` (히어로·오시는 길에서 함께 사용)
   - 안내 문구: `scheduleNote`(종료 시각), `mealNotice`(뷔페 사전 신청), `mealCostNotice`(식사비 — 청년 무료 / 장년 유료, 초대하는 분 부담. **금액 미정, 확정되면 문구 수정 필요**)
+- `fran` : 행사 이름 약자 배열 (`letter` / `en` / `ko`)
 - `schedule` : 당일 순서 배열 (뷔페 / 찬양 / 뮤지컬 / 말씀)
 - 지도 관련 값: `naverPlaceUrl`, `kakaoPlaceUrl`, `naverPlaceId`, `venueCoord`
 
